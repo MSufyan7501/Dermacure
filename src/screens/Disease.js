@@ -175,7 +175,16 @@ const Disease = ({navigation}) => {
               width: '90%',
             }}>
             <UriDisplay imgUri={imgUri.uri} />
-            <Button TEXT={'Upload Photo'} onPress={UploadOnServer} />
+            {/* <Button TEXT={'Upload Photo'} onPress={UploadOnServer} /> */}
+            <Button
+              TEXT={'Get Results'}
+              // picture server pe jay gi server response me disease
+              // ka nam bataye ga agar koi error aata ha to alert nae
+              //to next screen ko params me disease name bhejna
+              onPress={() => {
+                navigation.navigate('Results');
+              }}
+            />
 
             {wait ? <ProgressDialogue /> : null}
           </View>
