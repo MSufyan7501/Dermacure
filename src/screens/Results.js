@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import DropDownDesc from '../components/DropDownDesc';
 import Liner from '../components/Liner';
 import {responsiveHeight} from 'react-native-responsive-dimensions';
@@ -12,7 +12,10 @@ const symptoms =
 const precaution =
   'The management of congenital melanocytic nevi depends on a number of factors, including the size of the lesion, the location of the lesion, the age of patient, the effect on cosmesis, and the potential for malignant transformation.\n\nAlthough the risk of malignant transformation in small and medium-sized congenital melanocytic nevi has not been established, many physicians agree that the risk is probably not significant enough to warrant the prophylactic removal of all of these lesions. However, some patients may desire removal of these lesions to improve cosmesis';
 
-const Results = () => {
+const Results = ({route}) => {
+  const percent = route.params.percentage;
+  const diseaseName = route.params.result;
+
   const [textShown, setTextShown] = useState(false); //To show ur remaining Text
   const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
   const toggleNumberOfLines = () => {
@@ -34,7 +37,7 @@ const Results = () => {
       <View>
         {/* <Text>Results</Text> */}
         <View style={styles.ResultContainer}>
-          <Text style={styles.headerText}>Nevus</Text>
+          <Text style={styles.headerText}>{diseaseName}</Text>
           <View
             style={{
               width: '67%',
@@ -53,15 +56,19 @@ const Results = () => {
               }}>
               <View
                 style={{
-                  backgroundColor: 'orange',
-                  width: '30%',
+                  backgroundColor: percent >= 70 ? 'red' : 'orange',
+                  width: percent.toString() + '%',
                   height: '100%',
                   borderTopLeftRadius: 10,
                   borderBottomLeftRadius: 10,
                 }}
               />
             </View>
-            <Text style={styles.DescStyle}> Medium Risk(20%)</Text>
+            <Text style={styles.DescStyle}>
+              {' '}
+              {percent >= 70 ? 'High' : 'Medium'} Risk(
+              {percent.toFixed(0)}%)
+            </Text>
           </View>
           {/* <View style={{flexDirection: 'row', witdh: '90%', height: '100%'}}>
           <View

@@ -1,6 +1,14 @@
 import {StyleSheet} from 'react-native';
 import {responsiveHeight} from 'react-native-responsive-dimensions';
 
+// export const ipAddress = '192.168.100.11'; // replace with your desired default IP address
+export const ipAddress = '10.8.224.115'; // replace with your desired default IP address
+
+export const getIpAddress = () => ipAddress;
+
+export const setIpAddress = newIpAddress => {
+  // ipAddress = newIpAddress;
+};
 export const styles = StyleSheet.create({
   MainView: {
     flex: 1,
